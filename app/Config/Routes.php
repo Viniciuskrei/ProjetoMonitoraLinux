@@ -43,6 +43,7 @@ $routes->add('/sobre'			, 'IndexController::sobre');
 // GET
 $routes->get('/usuario/editar/(:num)'	, 'UsuarioController::editaUsuario/$1');
 $routes->get('/usuario/excluir/(:num)'	, 'UsuarioController::excluiUsuario/$1');
+$routes->get('/dados/obterdados'		, 'DadosController::obterDados');
 
 // POST
 $routes->post('/autenticacao/login'	, 'LoginController::login');

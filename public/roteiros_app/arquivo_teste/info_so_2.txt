@@ -1,0 +1,3 @@
+  Operating System: Linux Mint 20.3
+            Kernel: Linux 5.4.0-120-generic
+      Architecture: x86-64
