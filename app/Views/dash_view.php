@@ -1,7 +1,8 @@
 <?= $this->include('header_view', array('titulo' => $titulo )); ?>
 
+<div id="content" class="container">
 	<?php if(session()->has('usuario')) : ?>
-		<div id="content">
+		
 			<h3>Corpo site</h3>
 
 			<!-- DADOS DA CPU -->
@@ -26,9 +27,11 @@
 			</div>
 
 			<hr>
-		</div>
+		
 	<?php else : ?>
-		<div></div>
+		<h3>Faça Login para continuar</h3>
+		<hr>
 	<?php endif; ?>
+</div>
 
 <?= $this->include('footer_view'); ?>

@@ -33,10 +33,33 @@ class UsuarioController extends BaseController
 
     // FUNCAO CADASTRAR
     public function cadastrar(){
+        $data['titulo'] = 'Cadastro de Usuário';
+        $data['acao'] = "Inserir";
+        $data['msg'] = '';
+        $data['erros'] = '';
+
+        $categoriaModel = new \App\Models\CategoriaModel();
+        $listaCategorias = $categoriaModel->findAll();
+
+        helper('form');
+
+        $arrayCategorias = [];
+        foreach ($listaCategorias as $categoria){
+            $arrayCategorias[$categoria->id] = $categoria->nomeCategoria;
+        }
+
+        $data['comboCategorias'] = form_dropdown('idCategoria', $arrayCategorias);
+
         $post = $this->request->getPost();
         $usuarioModel = new \App\Models\UsuarioModel();
 
-        return $usuarioModel->cadastrar($post);
+        if($usuarioModel->cadastrar($post)){
+            $data['msg'] = "Usuário inserido com sucesso";
+        }else{
+            $data['msg'] = "Erro ao inserir usuário";
+            $data['erros'] = $usuarioModel->errors();
+        }
+        echo view('cadastrar_view', $data);
     }
 
     // LISTA TODOS USUARIOS DO BANCO
