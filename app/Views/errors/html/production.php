@@ -16,7 +16,7 @@
 
 		<h1 class="headline">Whoops!</h1>
 
-		<p class="lead">We seem to have hit a snag. Please try again later...</p>
+		<p class="lead">Parece que tivemos um problema. Por favor, tente novamente em alguns instantes...</p>
 
 	</div>
 

@@ -1,0 +1,1 @@
+hostnamectl | grep -E 'Operating System|Kernel|Architecture'>info_so_1.txt

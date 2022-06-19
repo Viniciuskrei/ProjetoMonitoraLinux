@@ -1,0 +1,11 @@
+CRITICAL - 2022-06-17 23:55:58 --> Undefined variable: comboCategorias
+#0 C:\wamp64\www\testeBP\app\Views\cadastrar_view.php(10): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\wamp64\\www\\t...', 10, Array)
+#1 C:\wamp64\www\testeBP\system\View\View.php(210): include('C:\\wamp64\\www\\t...')
+#2 C:\wamp64\www\testeBP\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\wamp64\www\testeBP\system\Common.php(1089): CodeIgniter\View\View->render('cadastrar_view', Array, true)
+#4 C:\wamp64\www\testeBP\app\Controllers\IndexController.php(18): view('cadastrar_view', Array)
+#5 C:\wamp64\www\testeBP\system\CodeIgniter.php(825): App\Controllers\IndexController->inserir()
+#6 C:\wamp64\www\testeBP\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\IndexController))
+#7 C:\wamp64\www\testeBP\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\testeBP\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

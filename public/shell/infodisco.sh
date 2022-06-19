@@ -1,0 +1,1 @@
+df -h>uso_disco_1.txt
