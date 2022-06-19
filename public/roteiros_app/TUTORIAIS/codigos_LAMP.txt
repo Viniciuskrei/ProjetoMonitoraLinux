@@ -1,0 +1,50 @@
+=======================================================================
+
+CODIGOS SEQUENCIAS PARA INSTALAR O LAMP VIA TERMINAL EM ESTAÇÕES LINUX
+
+=======================================================================
+> Preparando Linux
+    
+    > sudo apt update
+    > sudo apt upgrade
+=======================================================================
+> Instalando Apache
+    > sudo apt install apache2
+=======================================================================
+> Instalando o MySQL
+    > sudo apt install mysql-server
+=======================================================================
+> Instalando o PHP
+    > sudo apt install php libapache2-mod-php php-mysql
+    > php -v
+=======================================================================
+> Criando um Virtual Host para seu Website
+    > sudo mkdir /var/www/your_domain
+    > sudo chown -R $USER:$USER /var/www/your_domain
+        >> atribui a propriedade da pasta ao usuario
+    > sudo nano /etc/apache2/sites-available/your_domain.conf
+        
+            <VirtualHost *:80>
+                ServerName your_domain
+                ServerAlias www.your_domain
+                ServerAdmin webmaster@localhost
+                DocumentRoot /var/www/your_domain
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+            </VirtualHost>
+
+    > sudo a2ensite your_domain //habilita o dominio
+    > sudo a2dissite 000-default //se quiser desativar o padrao do apache
+    > sudo apache2ctl configtest //checa erro de sintaxe
+    > sudo systemctl reload apache2
+=======================================================================
+> Caso tenha o erro: ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+
+    > sudo mysql
+        mysql> USE mysql;
+        mysql> SELECT User, Host, plugin FROM mysql.user;
+        mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+        mysql> FLUSH PRIVILEGES;
+        mysql> exit;
+    > sudo service mysql restart
+

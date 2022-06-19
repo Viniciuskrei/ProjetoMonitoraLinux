@@ -1,0 +1,57 @@
+===================================================================================
+> Instalando o XAMPP no Linux
+
+-- 32 bits
+
+wget https://ufpr.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.4.11/xampp-linux-7.4.11-0-installer.run -O xampp-installer.run
+
+-- 64 bits
+
+wget "https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/7.4.27/xampp-linux-x64-7.4.27-2-installer.run/download" -O xampp-installer.run
+
+===================================================================================
+> Transformando o instalador em um executável
+
+chmod +x xampp-installer.run
+===================================================================================
+> Executando o instalador
+
+sudo ./xampp-installer.run
+===================================================================================
+> Para executar o lampp
+
+sudo /opt/lampp/manager-linux-x64.run
+===================================================================================
+> Problema com permissões e exibir pastas
+
+-- (passa seu usuario como proprietário da pasta)
+sudo chown -c -R seu_usuario /opt/lampp/
+
+-- (permissoes totais na pasta)
+sudo chmod -R 777 /opt/lampp/
+
+-- (PHPMyAdmin precisa ter exceção)
+sudo chmod -R 755 /opt/lampp/phpmyadmin/
+
+-- (editar o arquivo "my.cnf" em: /opt/lampp/etc para que fique:)
+user=root
+
+-- ERRO 403 (permissao no phpmyadmin)
+acessar /opt/lampp/etc/extra/httpd-xampp.conf e editar:
+   
+    Alias /phpmyadmin "C:/xampp/phpMyAdmin/"
+    <Directory "C:/xampp/phpMyAdmin">
+    AllowOverride AuthConfig
+    Require local
+    ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+
+para:
+
+    Alias /phpmyadmin "C:/xampp/phpMyAdmin/"
+    <Directory "C:/xampp/phpMyAdmin">
+    AllowOverride AuthConfig
+    Require all granted
+    ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+===================================================================================
+
+

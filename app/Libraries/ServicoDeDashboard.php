@@ -6,7 +6,7 @@ class ServicoDeDashboard
 {
 	// DADOS DA CPU DO COMPUTADOR
 	public function cpu(){
-		$arquivo = fopen('./../public/arquivos_teste/cpu_ps_1.txt', 'r');
+		$arquivo = fopen('./../writable/uploads/arquivos_sistema/cpu_ps_1.txt', 'r');
 
 		$info = array();
 
@@ -34,7 +34,7 @@ class ServicoDeDashboard
 
 	// DADOS DA MEMÓRIA DO COMPUTADOR
 	public function memoria(){
-		$arquivo = fopen('./../public/arquivos_teste/memoria_free_1.txt', 'r');
+		$arquivo = fopen('./../writable/uploads/arquivos_sistema/memoria_free_1.txt', 'r');
 		$memoria = array();
 
 		$info = array();
@@ -60,7 +60,7 @@ class ServicoDeDashboard
 
 	// DADOS DO SISTEMA OPERACIONAL DO COMPUTADOR
 	public function infoSo(){
-		$arquivo = fopen('./../public/arquivos_teste/info_so_1.txt', 'r');
+		$arquivo = fopen('./../writable/uploads/arquivos_sistema/info_so_1.txt', 'r');
 		$so = array();
 
 		$info = array();
@@ -81,19 +81,19 @@ class ServicoDeDashboard
 
 	// DADOS DO USO DE DISCO DO COMPUTADOR
 	public function usoDisco(){
-		$arquivo = fopen('./../public/arquivos_teste/uso_disco_1.txt', 'r');
+		$arquivo = fopen('./../writable/uploads/arquivos_sistema/uso_disco_1.txt', 'r');
 
 		$info = array();
 
 		while(!feof($arquivo)){
 			$info[] = explode('   ', trim(fgets($arquivo)));
 		}
-
+		
 		//pegar dados uso do disco e moldar pelo formato do txt
 		$dados1 = explode('%', trim($info[1][6])); //usado 1
 		$dados2 = explode('%', trim($info[2][4])); //usado 2
 		$dados3 = explode('%', trim($info[3][4])); //usado 3
-		$dados4 = explode('%', trim($info[4][5])); //usado 4
+		$dados4 = explode('%', trim($info[4][4])); //usado 4
 		$dados5 = explode('%', trim($info[5][4])); //usado 5
 		$dados6 = explode('%', trim($info[6][5])); //usado 6
 		$dados7 = explode('%', trim($info[7][4])); //usado 7
@@ -104,5 +104,12 @@ class ServicoDeDashboard
 		fclose($arquivo);
 
 		return $disco;
+	}
+
+	public function executaShell(){
+		exec('./../public/scripts/infocpu.sh');
+		exec('./../public/scripts/infodisco.sh');
+		exec('./../public/scripts/infomemoria.sh');
+		exec('./../public/scripts/infoso.sh');
 	}
 }

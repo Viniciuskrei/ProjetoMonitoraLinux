@@ -1,0 +1,36 @@
+===================================================================================
+> Acesse o arquivo:
+
+/opt/lampp/etc/http.conf
+
+===================================================================================
+> Descomente a linha
+
+de:
+
+#Include etc/extra/httpd-vhosts.conf
+
+para:
+
+Include etc/extra/httpd-vhosts.conf
+
+===================================================================================
+> Acesse o arquivo: 
+
+/opt/lampp/etc/extra/httpd-vhost.conf
+
+===================================================================================
+> Preencha com esses dados:
+
+<VirtualHost myaplication:80>
+   DocumentRoot "/opt/lampp/htdocs/pasta-do-projeto/public"
+   ServerName myaplication
+   <Directory "/opt/lampp/htdocs/pasta-do-projeto/public">
+       AllowOverride All
+       Require all granted
+   </Directory>
+</VirtualHost>
+
+===================================================================================
+
+> Reinicie o apache

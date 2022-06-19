@@ -1,0 +1,13 @@
+• Status em tempo real da utilização de CPU
+    > ps -eo %cpu --sort=-%cpu | head
+
+• Status da memória utilizada
+    > free
+    > ps -eo %mem --sort=-%mem | head
+
+• Status de uso dos discos
+    > df -h
+
+• Informações do SO (distribuição, versão, arquitetura)
+    > hostnamectl
+    > hostnamectl | grep -E 'Operating System|Kernel|Architecture'
