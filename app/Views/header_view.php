@@ -35,7 +35,7 @@
 					<a class="dropdown-item" href="<?= base_url("/listaUsuario") ?>">Editar Usuários</a>
 				<?php endif; ?>
 				<!-- SE ADMIN OU ANALISTA -->
-				<a class="dropdown-item" href="<?= base_url("/logout") ?>">Logout</a>
+				<a class="dropdown-item" href="<?= base_url("/logout") ?>">Sair</a>
 				<a class="dropdown-item" href="<?= base_url("/sobre") ?>">Sobre o App</a>
 			</div>
 		</div>

@@ -15,7 +15,7 @@ class UsuarioModel extends Model
 
     protected $validationRules = [
         'nomeUsuario'   => 'required|min_length[3]',
-        "emailUsuario"  => "required|is_unique",
+        "emailUsuario"  => "required|is_unique[usuario.emailUsuario]",
         "senhaUsuario"  => "required|min_length[8]"
     ];
 

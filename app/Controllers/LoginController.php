@@ -6,7 +6,8 @@ class LoginController extends BaseController
 {
 
 	public function index(){
-		echo view('login_view');
+        $data['titulo'] = 'Realize seu Login para continuar';
+		echo view('login_view', $data);
 	}    
 
     // LOGIN COM TITULO UNICO BEM VINDO
