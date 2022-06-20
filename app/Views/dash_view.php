@@ -2,6 +2,14 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<script type="text/javascript">
+	var cpu = 0;
+	var memTotal = 0;
+	var memUsada = 0;
+	var memDisponivel = 0;
+	var disco = 0;
+</script>
+
 <!-- GRÁFICO DE CPU -->
 <script type="text/javascript">
 	google.charts.load('current', {
@@ -13,7 +21,7 @@
 
 		var data = google.visualization.arrayToDataTable([
 			['Label', 'Value'],
-			['CPU', <?= $cpu ?>],
+			['CPU (%)', <?= $cpu ?>],
 		]);
 
 		var options = {
@@ -27,6 +35,12 @@
 		var chart = new google.visualization.Gauge(document.getElementById('cpu_div'));
 
 		chart.draw(data, options);
+
+		setInterval(function() {
+          data.setValue(0, 1, cpu);
+          chart.draw(data, options);
+        }, 1000);
+
 	}
 </script>
 
@@ -60,6 +74,14 @@
 
 		var chart = new google.visualization.BarChart(document.getElementById("memoria_div"));
 		chart.draw(data, options);
+
+		setInterval(function() {
+          data.setValue(0, 0, 'Memória (MB)');
+          data.setValue(0, 1, memUsada);
+          data.setValue(0, 2, memDisponivel);
+          data.setValue(0, 3, memTotal);
+          chart.draw(data, options);
+        }, 1000);
 	}
 </script>
 
@@ -90,6 +112,12 @@
 
 		var chart = new google.visualization.PieChart(document.getElementById('disco_div'));
 		chart.draw(data, options);
+
+		setInterval(function() {
+          data.setValue(0, 1, disco);
+          data.setValue(1, 1, 100);
+          chart.draw(data, options);
+        }, 1000);
 	}
 </script>
 
@@ -143,6 +171,8 @@
 		</div>
 
 		<hr>
+
+		<h3>Comparativo em texto:</h3>
 
 		<!-- DADOS DA CPU -->
 		<div class="cpu">CPU: <span id="cpu"><?= $cpu ?></span></div>
@@ -204,10 +234,15 @@
 			data: null,
 			success: function(retorno) {
 				$('#cpu').html(retorno.cpu);
+				cpu = retorno.cpu;
 				$('#memTotal').html(retorno.memoria.memTotal);
+				memTotal = retorno.memoria.memTotal
 				$('#memUsada').html(retorno.memoria.memUsada);
+				memUsada = retorno.memoria.memUsada;
 				$('#memDisponivel').html(retorno.memoria.memDisponivel);
+				memDisponivel = retorno.memoria.memDisponivel;
 				$('#disco').html(retorno.disco);
+				disco = retorno.disco;
 				$('#sistema').html(retorno.so.sistema);
 				$('#kernel').html(retorno.so.kernel);
 				$('#arquitetura').html(retorno.so.arquitetura);
