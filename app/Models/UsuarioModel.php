@@ -34,6 +34,16 @@ class UsuarioModel extends Model
         ]
     ];
 
+    // VERIFICA SE E-MAIL JÁ EXISTE NA BASE DE DADOS
+    public function verificaEmail($email){
+        return $this->db
+        ->table($this->table)
+        ->select("emailUsuario")
+        ->where("emailUsuario", $email)
+        ->get()
+        ->getResultObject();
+    }
+
     // INSERE NO BANCO TODOS OS DADOS RECEBIDOS POR POST
     public function cadastrar($post){
         return $this->db
@@ -51,6 +61,7 @@ class UsuarioModel extends Model
         ->table($this->table)
         ->select("$this->table.*, categoria.nomeCategoria")
         ->join("categoria", "$this->table.idCategoria = categoria.id")
+        ->orderBy("id")
         ->get()
         ->getResultObject();
     }

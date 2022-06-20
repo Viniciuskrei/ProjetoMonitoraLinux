@@ -17,49 +17,22 @@ class UsuarioController extends BaseController
         $data['erros'] = '';
 
         $categoriaModel = new \App\Models\CategoriaModel();
-        $listaCategorias = $categoriaModel->findAll();
 
-        helper('form');
-
-        $arrayCategorias = [];
-        foreach ($listaCategorias as $categoria){
-            $arrayCategorias[$categoria->id] = $categoria->nomeCategoria;
-        }
-
-        $data['comboCategorias'] = form_dropdown('idCategoria', $arrayCategorias);
+        $data['comboCategorias'] = $categoriaModel->findAll();
 
         echo view('cadastrar_view', $data);
     }
 
     // FUNCAO CADASTRAR
     public function cadastrar(){
-        $data['titulo'] = 'Cadastro de Usuário';
-        $data['acao'] = "Inserir";
-        $data['msg'] = '';
-        $data['erros'] = '';
-
-        $categoriaModel = new \App\Models\CategoriaModel();
-        $listaCategorias = $categoriaModel->findAll();
-
-        helper('form');
-
-        $arrayCategorias = [];
-        foreach ($listaCategorias as $categoria){
-            $arrayCategorias[$categoria->id] = $categoria->nomeCategoria;
-        }
-
-        $data['comboCategorias'] = form_dropdown('idCategoria', $arrayCategorias);
-
         $post = $this->request->getPost();
         $usuarioModel = new \App\Models\UsuarioModel();
+        
+        if(!$usuarioModel->verificaEmail($post['emailUsuario']))
+            return $this->response->setJSON($usuarioModel->cadastrar($post));
+        else
+            return $this->response->setJSON('Email já cadastrado');
 
-        if($usuarioModel->cadastrar($post)){
-            $data['msg'] = "Usuário inserido com sucesso";
-        }else{
-            $data['msg'] = "Erro ao inserir usuário";
-            $data['erros'] = $usuarioModel->errors();
-        }
-        echo view('cadastrar_view', $data);
     }
 
     // LISTA TODOS USUARIOS DO BANCO
@@ -87,10 +60,9 @@ class UsuarioController extends BaseController
     // FUNCAO EDITAR
     public function editar(){
         $post = $this->request->getPost();
-
         $usuarioModel = new \App\Models\UsuarioModel();
 
-        return $usuarioModel->editar($post);
+        return $this->response->setJSON($usuarioModel->editar($post));
     }
 
     // EXCLUI USUARIO PELO SEU ID
