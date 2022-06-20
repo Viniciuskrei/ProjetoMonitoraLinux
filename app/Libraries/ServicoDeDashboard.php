@@ -52,6 +52,9 @@ class ServicoDeDashboard
 		$memoria['memDisponivel'] = number_format(($dados3 + $dados4)/1024, 2, '.', '');
 		$memoria['memTotal'] = number_format($dados1/1024, 2, '.', '');
 		$memoria['memUsada'] = number_format($dados2/1024, 2, '.', '');
+		// $memoria['memDisponivel'] = $dados3 + $dados4;
+		// $memoria['memTotal'] = $dados1;
+		// $memoria['memUsada'] = $dados2;
 
 		fclose($arquivo);
 
