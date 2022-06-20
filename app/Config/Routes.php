@@ -40,9 +40,10 @@ $routes->add('/cadastrar'		, 'UsuarioController::formCadastra');
 $routes->add('/listaUsuario'	, 'UsuarioController::listaUsuario');
 $routes->add('/sobre'			, 'IndexController::sobre');
 
+$routes->add('/usuario/excluir/(:num)'	, 'UsuarioController::excluiUsuario/$1');
+
 // GET
 $routes->get('/usuario/editar/(:num)'	, 'UsuarioController::editaUsuario/$1');
-$routes->get('/usuario/excluir/(:num)'	, 'UsuarioController::excluiUsuario/$1');
 $routes->get('/dados/obterdados'		, 'DadosController::obterDados');
 
 // POST

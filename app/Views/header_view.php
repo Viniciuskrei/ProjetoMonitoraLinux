@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,45 +10,63 @@
 	<title><?= $titulo ?></title>
 
 	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="./css/estilo.css">
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('css/estilo.css') ?>">
+
 	<!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<!-- FIM Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+	<!-- FIM Bootstrap JS -->
 </head>
+
 <body>
-	<header id="header" class="container bg-dark text-white">
-
-		<!-- VERIFICA SE HA SESSAO -->
-		<?php if(session()->has('usuario')) : ?>
-
-		icone
-
-		<a class="btn btn-info"href="<?= base_url("/") ?>">Dashboard</a>
-
-		 Status do sistema Operacional Linux
-
-		<div class="dropdown btn">
-			<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fa-solid fa-bars"></i>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="<?= base_url("/") ?>">
+				<img src="<?= base_url('img/linux.png') ?>" alt="Pinguim do Linux - Freepik (https://www.flaticon.com/free-icons/linux)" class="bg-white" width="30" height="30">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<!-- SE USUARIO == ADMIN -->
-				<?php if($session->get('usuario')->idCategoria == 1) : ?>
-					<a class="dropdown-item" href="<?= base_url("/cadastrar") ?>">Cadastro de Usuários</a>
-					<a class="dropdown-item" href="<?= base_url("/listaUsuario") ?>">Editar Usuários</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- VERIFICA SE HA SESSAO -->
+				<?php if (session()->has('usuario')) : ?>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="<?= base_url("/") ?>">Início</a>
+						</li>
+					</ul>
+
+					<div style="color: white; margin-right:50%; transform: translateX(50%)"><a class="dropdown-item" href="<?= base_url("/") ?>">Status do Sistema Operacional Linux</a></div>
+
+					<div class="d-flex">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fa-solid fa-bars"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+									<!-- SE USUARIO == ADMIN -->
+									<?php if ($session->get('usuario')->idCategoria == 1) : ?>
+										<li><a class="dropdown-item" href="<?= base_url("/cadastrar") ?>">Cadastro de Usuários</a></li>
+										<li><a class="dropdown-item" href="<?= base_url("/listaUsuario") ?>">Editar Usuários</a></li>				
+										<hr class="dropdown-divider">
+									<?php endif; ?>
+									<!-- SE ADMIN OU ANALISTA -->
+									<li><a class="dropdown-item" href="<?= base_url("/sobre") ?>">Sobre</a></li>
+									<li><a class="dropdown-item" href="<?= base_url("/logout") ?>">Sair</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				<?php else : ?>
+					<!-- PEDE LOGIN SE NAO HOUVER SESSAO -->
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="<?= base_url("/autenticacao") ?>">Login</a>
+						</li>
+					</ul>
 				<?php endif; ?>
-				<!-- SE ADMIN OU ANALISTA -->
-				<a class="dropdown-item" href="<?= base_url("/logout") ?>">Sair</a>
-				<a class="dropdown-item" href="<?= base_url("/sobre") ?>">Sobre o App</a>
 			</div>
-		</div>
-		<?php else : ?>
-			<!-- PEDE LOGIN SE NAO HOUVER SESSAO -->
-			<a class="dropdown-item text-white" href="<?= base_url("/autenticacao") ?>">Login</a>
-		<?php endif; ?>
-	</header>
-	<hr>
+	</nav>

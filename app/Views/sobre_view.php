@@ -1,29 +1,43 @@
-<?= $this->include('header_view', array('titulo' => $titulo )); ?>
+<?= $this->include('header_view', array('titulo' => $titulo)); ?>
 
-<div id="content" class="container">
-	<h3>Sobre mim</h3>
+<div id="content" class="container mt-4 mb-5">
+	<h3>Sobre o App</h3>
+
+	<br>
+
 	<h4>Objetivo:</h4>
-	Sistema com dashboard de status do sistema Operacional Linux <br>
-	
-	<div class="grid">
-		<h4>Telas do Sistema:</h4>
-		<div>
-			• Sistema de Login <br>
-			• Gerenciamento de Usuários (Cadastrar, Atualizar, Remover) <br>
-			• Dashboard do Sistema <br>
-			• Status em tempo real da utilização de CPU <br>
-			• Status da memória utilizada <br>
-			• Status de uso dos discos <br>
-			• Informações do SO (distribuição, versão, arquitetura)
-		</div>
-		<h4>Ferramentas:</h4>
-		<div>
-			• Utilizado o Framework Codeigniter 4 (https://codeigniter.com/) <br>
-			• Utilizar no Front end o Bootstrap 5 (https://getbootstrap.com/) <br>
-			• Criptografada a senha dos usuários no banco de dados
-		</div>
+	<p>Sistema com dashboard de status do sistema Operacional Linux.</p>
+
+	<hr class="col-12 col-md-6">
+
+	<h4>Telas do Sistema:</h4>
+	<div>
+		<p>
+			<ul>
+				<li>Sistema de Login</li>
+				<li>Gerenciamento de Usuários (Cadastrar, Atualizar, Remover)</li>
+				<li>Dashboard do Sistema</li>
+				<li>Status em tempo real da utilização de CPU</li>
+				<li>Status da memória utilizada</li>
+				<li>Status de uso dos discos</li>
+				<li>Informações do SO (distribuição, versão, arquitetura)</li>
+				<li>Sistema</li>
+			</ul>
+		</p>
 	</div>
-	<hr>
+
+	<hr class="col-12 col-md-6">
+
+	<h4>Ferramentas:</h4>
+	<div>
+		<p>
+			<ul>
+				<li>Framework PHP utilizado Codeigniter 4 (<a href="https://codeigniter.com" target="_blank">https://codeigniter.com</a>)</li>
+				<li>Framework CSS utilizado Bootstrap 5 (<a href="https://getbootstrap.com" target="_blank">https://getbootstrap.com</a>)</li>
+				<li>Senhas criptografadas no Banco de Dados</li>
+			</ul>
+		</p>
+	</div>
 </div>
 
 <?= $this->include('footer_view'); ?>

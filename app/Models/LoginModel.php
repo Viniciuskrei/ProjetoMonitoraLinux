@@ -23,7 +23,7 @@ class LoginModel extends Model
                 ->getRowObject();
 
     	if($login == ''){
-    		echo "Usuario ou senha incorreto";
+    		echo "<script>alert('Usuario ou senha incorreto')</script>";
     	}else{
     		return $login;
     	}
